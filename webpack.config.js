@@ -29,6 +29,10 @@ module.exports = {
           presets: ['@babel/preset-react'],
         },
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      }
     ],
   },
   plugins: [
@@ -40,9 +44,6 @@ module.exports = {
         './Button': './src/button',
       },
       shared: { react: { singleton: true }, 'react-dom': { singleton: true }, 'react-router-dom': { singleton: true } },
-    }),
-    new ModuleFederationPlugin({
-      
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
