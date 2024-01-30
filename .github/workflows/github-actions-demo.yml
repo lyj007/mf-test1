@@ -54,7 +54,7 @@ jobs:
           username: ${{ vars.ALIYUN_ECS_USER }}
           key: ${{ secrets.ALIYUN_ECS_SEC }}
           # port: ${{ vars.ALIYUN_SERVER_SSH_PORT }}
-          port: 8080
+          port: 22
           script: |
             kubectl set image deployment/nginx-deployment1 nginx=110477lyj/test:${{ github.sha }}
 
