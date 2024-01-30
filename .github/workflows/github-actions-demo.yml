@@ -56,5 +56,5 @@ jobs:
           # port: ${{ vars.ALIYUN_SERVER_SSH_PORT }}
           port: 22
           script: |
-            kubectl set image deployment/nginx-deployment1 nginx=110477lyj/test:${{ github.sha }}
+            kubectl set image deployment/image-test nginx=110477lyj/test:${{ github.sha }}
 
