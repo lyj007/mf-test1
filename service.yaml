@@ -32,10 +32,10 @@ spec:
 #定义一个容器名，一个-name:定义一个容器
       - name: nginx1
 #定义容器使用的镜像以及版本
-        image: nginx:latest
+        image: {{ nginx-image }}
         ports:
 #定义容器对外的端口
-        - containerPort: 80
+        - containerPort: 70
 ---
 apiVision: v1
 kind: Service
@@ -46,8 +46,8 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 70
+      targetPort: 70
 #此处定义的selector要与deployment所定义的selector相同
 #service依靠标签选择器来检索提供服务的nodes
   selector:
@@ -63,9 +63,9 @@ spec:
   rules:
     - http:
       paths:
-        - path: /
+        - path: /mf
           backend:
             service:
               name: nginx-service1
               port:
-                number: 80
+                number: 70
