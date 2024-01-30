@@ -48,7 +48,7 @@ jobs:
             110477lyj/test:${{ github.sha }}
 
       - name: Deploy to ecs
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@lyj007-patch-1
         with:
           host: ${{ vars.ALIYUN_HOST }}
           username: ${{ vars.ALIYUN_USERNAME }}
