@@ -45,7 +45,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - protocol: TCP
+      port: 80
       targetPort: 80
 #此处定义的selector要与deployment所定义的selector相同
 #service依靠标签选择器来检索提供服务的nodes
