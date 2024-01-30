@@ -32,7 +32,7 @@ spec:
 #定义一个容器名，一个-name:定义一个容器
       - name: nginx1
 #定义容器使用的镜像以及版本
-        image: {{ nginx-image }}
+        image: nginx:latest
         ports:
 #定义容器对外的端口
         - containerPort: 70

@@ -56,6 +56,5 @@ jobs:
           # port: ${{ vars.ALIYUN_SERVER_SSH_PORT }}
           port: 22
           script: |
-            tr 'nginx-image' '110477lyj/test:${{ github.sha }}' < ${{ github.action.path }}/service.yaml
-            kubectl apply -f ${{ github.action.path }}/service.yaml
+            kubectl apply -f ./service.yaml
 
