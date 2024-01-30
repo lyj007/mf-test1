@@ -5,7 +5,7 @@ import './button.css';
 const Button = () => {
   const navigate = useNavigate();
   return (
-    <button onClick={() => navigate('/download')}>button1</button>
+    <button onClick={() => navigate('/download')}>button123</button>
   )
 };
 
