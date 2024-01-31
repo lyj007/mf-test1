@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/lyj007/mf-test1#readme",
   "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.5.3",
     "react": "^18.2.0",

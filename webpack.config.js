@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -50,6 +51,7 @@ module.exports = {
       filename: 'index.html',
       inject: true,
     }),
+    new CleanWebpackPlugin(),
   ],
   resolve: {
     extensions: ['.js'],
