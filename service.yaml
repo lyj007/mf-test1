@@ -1,0 +1,71 @@
+
+#指定api版本标签
+apiVersion: apps/v1
+#定义资源的类型/角色，deployment为副本控制器
+#此处资源类型可以是Deployment、Job、Ingress、Service等
+kind: Deployment
+#定义资源的元数据信息，比如资源的名称、namespace、标签等信息
+metadata:
+#定义资源的名称，在同一个namespace空间中必须是唯一的
+  name: nginx-deployment1
+  labels:
+    app: nginx1
+#定义deployment资源需要的参数属性，诸如是否在容器失败时重新启动容器的属性
+spec:
+#定义副本数量
+  replicas: 3
+#定义标签选择器
+  selector:
+#定义匹配标签
+    matchLabels:
+#需与后面的.spec.template.metadata.labels定义的标签保持一致
+      app: nginx1
+#定义业务模板，如果有多个副本，所有副本的属性会按照模板的相关配置进行匹配
+  template:
+    metadata:
+#定义Pod副本将使用的标签，需与前面的.spec.selector.matchLabels定义的标签保持一致
+      labels:
+        app: nginx1
+    spec:
+#定义容器属性
+      containers:
+#定义一个容器名，一个-name:定义一个容器
+      - name: nginx1
+#定义容器使用的镜像以及版本
+        image: nginx:latest
+        ports:
+#定义容器对外的端口
+        - containerPort: 70
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service1
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 70
+      targetPort: 70
+#此处定义的selector要与deployment所定义的selector相同
+#service依靠标签选择器来检索提供服务的nodes
+  selector:
+    app: nginx1
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress1
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /mf
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service1
+            port:
+              number: 70
